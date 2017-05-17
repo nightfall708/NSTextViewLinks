@@ -10,10 +10,22 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet var textView: NSTextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.textView.isAutomaticDataDetectionEnabled = true
+        self.textView.isAutomaticLinkDetectionEnabled = true
+        
+        self.textView.string = "http://www.google.com"
+        self.textView.checkTextInDocument(nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.textView.string = "This is a test."
+//            self.textView.checkTextInDocument(nil)
+        }
+
     }
 
     override var representedObject: Any? {
